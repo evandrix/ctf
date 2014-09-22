@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>2014 CSAW CTF - Networking 100</title>
+	<link href="all.min.css" rel="stylesheet" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div id="content">
+	  <div id="post">
+		<h1>2014 CSAW CTF - Networking 100 - Big Data</h1>
+		<!--<div id="postinfo">
+		  <div id="postdate"></div>
+		  <div id="posttags">tags: <a href="/tags/X"></a></div>
+		</div>-->
+		<div id="postbody">
+<ol>
+<li><p>use <code>chaosreader</code> tool to process <code>pcap.pcapng</code> file produces:</p></li>
+<pre>
+	pcap.pcapng-chaosreader
+	├── getpost.html
+	├── httplog.text
+	├── image.html
+	├── <strong>index.html</strong> <= entry point to view results
+	├── index.text
+	...
+	├── session_0089.telnet.html
+	├── session_0089.telnet.replay
+	...
+</pre>
+<li>search through all html output for flag</li>
+<div class="highlight"><pre><span class="k">for </span>f in pcap.pcapng-chaosreader/*.html; <span class="k">do </span>cat <span class="s2">&quot;${f}&quot;</span> | w3m -dump -T text/html <span class="s2">&quot;${f}&quot;</span>; <span class="k">done</span> | egrep <span class="s2">&quot;flag{&quot;</span>
+</pre></div>
+<li>..Password: flag{<code>bigdataisaproblemnotasolution</code>}</li>
+</ol>
+		</div>
+	</div>
+</body>
+</html>
